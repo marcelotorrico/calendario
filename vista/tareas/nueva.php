@@ -15,12 +15,11 @@
 	<script src="../../js/jquery.min.js"></script>
 	<script src="../../js/bootstrap.js"></script>
 	<script src="../../js/bootstrap-datepicker.js"></script>
-
-        <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.1/themes/base/jquery-ui.css" />
-        <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
-        <script src="http://code.jquery.com/ui/1.10.1/jquery-ui.js"></script>
-        <script src="jquery.ui.datepicker-es.js"></script>
-        <script type="text/javascript" src="../../js/validacionFechas.js"></script>
+	
+    <link rel="stylesheet" href="../../css/jquery1-10.css" />
+    <script src="../../dist/jquery-datepicker.js"></script>
+    <script src="jquery.ui.datepicker-es.js"></script>
+    <script type="text/javascript" src="../../js/validacionFechas.js"></script>
         
 </head>
 
@@ -32,7 +31,7 @@
 				<div class="col-md-3">
 					<div class="form-group">
 						<label class="sr-only" for="date">Ingrese fecha de inicio</label>
-						<input  type="text" name="fechaInicioE" id="fechaInicioE" placeholder="Fecha de Inicio" readonly="readonly">
+						<input class="datepicker" type="text" name="fechaInicioE" id="fechaInicioE" placeholder="Fecha de Inicio" readonly="readonly">
 					</div>
 				</div>
 
@@ -77,13 +76,13 @@
 				<div class="col-md-4">
 					<div class="form-group">
 						<label class="sr-only" for="name" class=" col-lg-2 control-label">Nombre</label>
-						<input type="tex" class="form-control" id="name" placeholder="nombre de la tarea", name = "name">
+						<input type="tex" class="form-control" id="name" placeholder="Nombre de la tarea", name = "name">
 					</div>
 				</div>
 
 				<div class="col-md-4">
 					<div class="form-group">
-						<label class="sr-only" for="name" class=" col-lg-2 control-label">materia</label>
+						<label  for="name" class=" col-lg-2 control-label">materia</label>
 						<input type="tex" class="form-control" id="materia" name="materia" placeholder="Materia">
 					</div>
 				</div>
