@@ -1,73 +1,61 @@
 <?php
 require_once 'data/Connection.php';
+require_once 'PersistentObject.php';
+require_once 'Timestamp.php';
+require_once 'Materia.php';
 
-class Tarea{
+class Tarea extends PersistentObject{
 
-	private $tiempo_inicio;
-	private $tiempo_limite;
+	private $fecha_inicio;
+	private $fecha_entrega;
 	private $nombre;
 	private $descripcion;
 	private $materia_id;
-	private $id;
-	
-	function construct_new(){
-		$connection 	= Connection::getInstance();
-		$connection->query("INSERT INTO tareas (nombre) VALUES('')");
-		$res = $connection->query("SELECT currval('tareas_id_seq')");
-		$arr = pg_fetch_array($res);
-		$this->id = $arr[0];
-	}
 	
 	function __construct($id = -1){
-		if ($id == -1)
-			$this->construct_new();
-		else {
-			$connection 	= Connection::getInstance();
-			$datosDeTarea 	= $connection->query("SELECT * FROM tareas WHERE id = $id");
-			
-			$this->id = $id;
-			
-			while ($aRow = pg_fetch_assoc($datosDeTarea)){
-				$this->tiempo_inicio  	= $aRow['tiempo_inicio'];
-				$this->tiempo_limite  	= $aRow['tiempo_limite'];
-				$this->nombre 	    	= $aRow['nombre'];
-				$this->descripcion		= $aRow['descripcion'];
-				$this->materia_id	 	= $aRow['materia_id'];
-			}
+		parent::__construct($id);
+	}
+	
+	protected function initialize_from($aRow){
+		$this->fecha_inicio  	= new Timestamp($aRow['fecha_inicio']);
+		$this->fecha_entrega  	= new Timestamp($aRow['fecha_entrega']);
+		$this->nombre 	    	= $aRow['nombre'];
+		$this->descripcion		= $aRow['descripcion'];
+		$this->materia_id	 	= $aRow['materia_id'];
+	}
+	
+	public static function all(){
+		//ahora implemento esto :)
+		$connection 	= Connection::getInstance();
+		$class = "tareas";
+		$result = $connection->query("SELECT id FROM $class");
+		
+		$res = array();
+		
+		while ($id = pg_fetch_array($result)[0]){
+			echo "$id<br>";
+			$res[] = new Tarea($id);
 		}
+		
+		return $res;
 	}
 	
 	public function guardar(){
             
          $connection = Connection::getInstance();
-         //agregar los tiempos
          $consulta 	 = "UPDATE tareas SET
          				nombre = '$this->nombre',
          				descripcion = '$this->descripcion',
-        				materia_id = '$this->materia_id'
+        				materia_id = $this->materia_id,
+        				fecha_inicio = '$this->fecha_inicio',
+        				fecha_entrega = '$this->fecha_entrega'
          				WHERE id = $this->id";
-         				
+         
          $connection->query($consulta);
     }
 	
-	public function printTime(){
-		echo $this->nombre;
-		echo $this->tiempo_limite."---<br>";
-		echo date("Y-m-d H:i:s")."<br>";
-	}
-	
-	public function getNombre(){
-		return $this->nombre;
-	}
-	
-	public static function execClosure($aClosure){
-		$a = new Tarea(1);
-		echo 'esto es un closure en accion :D <br>';
-		$aClosure($a);
-	}
-	
-	//aca buscar materia
-	public function setMateria($materia){
+	public function setMateria($materia_id){
+	//	$this->materia_id = $materia_id;
 		$this->materia_id = 1;
 	}
 	
@@ -77,7 +65,32 @@ class Tarea{
 	public function setDescripcion($descripcion){
 		$this->descripcion = $descripcion;
 	}
-  
+ 	public function setFechaInicio($date, $hour){
+ 		$this->fecha_inicio = new Timestamp($date, $hour);
+ 	}
+ 	public function setFechaEntrega($date, $hour){
+ 		$this->fecha_entrega = new Timestamp($date, $hour);
+ 	}
+ 	
+ 	public function getMateria(){
+ 		return new Materia($this->materia_id);
+ 	}
+ 	public function getNombre(){
+ 		return $this->nombre;
+ 	}
+ 	public function getFechaInicio(){
+ 		return $this->fecha_inicio;
+ 	}
+ 	public function getFechaEntrega(){
+ 		return $this->fecha_entrega;
+ 	}
+ 	public function getDescripcion(){
+ 		return $this->descripcion;
+ 	}
+ 	
+ 	public function __toString(){
+ 		return "$this->nombre :) <br>";
+ 	}
 }
 
 ?>

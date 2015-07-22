@@ -148,7 +148,7 @@
 				},
 				afterDone: function() {
 					console.log("after done");
-				}                   
+				}
 			})
 			.find('input').change(function() {
 				console.log(this.value);

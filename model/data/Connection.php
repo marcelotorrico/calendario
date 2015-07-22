@@ -1,5 +1,8 @@
 <?php
 //psql -U postgres -W -h localhost calendario_tareas
+// el password sigue siendo cronos :)
+// /etc/php5/apache2/php.ini -> archivo de configuracion
+
 class Connection
 {
   private static $instance;
@@ -22,6 +25,7 @@ class Connection
   }
   
   public function query($aQuery){
+    echo "$aQuery<br>";
     return pg_query($this->connection, $aQuery);
   }
   
