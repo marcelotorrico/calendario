@@ -46,7 +46,7 @@
 					<div class="form-group">
 						<div class="clearfix">
 							<div class="input-group clockpicker pull-center" data-align="top" data-autoclose="true">
-								<input type="text" class="form-control" name="horaIni" placeholder="Ingrese la hora de entrega">
+								<input type="text" class="form-control" name="horaIni" id="horaIni" placeholder="Ingrese la hora de entrega">
 								<span class="input-group-addon">
                                                                     <span class="glyphicon glyphicon-time"></span>
 								</span>
@@ -59,7 +59,7 @@
 					<div class="form-group">
 						<div class="clearfix">
 							<div class="input-group clockpicker pull-center" data-align="top" data-autoclose="true">
-								<input type="text" class="form-control" name="horaFin" placeholder="Ingrese la hora limite">
+								<input type="text" class="form-control" name="horaFin" id ="horaFin" placeholder="Ingrese la hora limite de entrega">
 								<span class="input-group-addon">
 					<span class="glyphicon glyphicon-time"></span>
 								</span>
@@ -148,7 +148,7 @@
 				},
 				afterDone: function() {
 					console.log("after done");
-				}
+				}                   
 			})
 			.find('input').change(function() {
 				console.log(this.value);
