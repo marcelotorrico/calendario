@@ -25,7 +25,6 @@ class Tarea extends PersistentObject{
 	}
 	
 	public static function all(){
-		//ahora implemento esto :)
 		$connection 	= Connection::getInstance();
 		$class = "tareas";
 		$result = $connection->query("SELECT id FROM $class");
@@ -33,7 +32,6 @@ class Tarea extends PersistentObject{
 		$res = array();
 		
 		while ($id = pg_fetch_array($result)[0]){
-			echo "$id<br>";
 			$res[] = new Tarea($id);
 		}
 		
@@ -86,10 +84,6 @@ class Tarea extends PersistentObject{
  	}
  	public function getDescripcion(){
  		return $this->descripcion;
- 	}
- 	
- 	public function __toString(){
- 		return "$this->nombre :) <br>";
  	}
 }
 

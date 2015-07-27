@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
+        <body style="background:#F0F8FF">
         <meta charset="UTF-8">
         <title>Tareas Registradas</title>
          <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -13,34 +14,30 @@
     </head>
     <body>
         <div class="container">
-        <table class="table table-striped table-hover table-bordered table-condensed">
-        <tr class="info">
-            <th>nombre</th>
-            <th>fecha inicio</th>
-            <th>fecha fin</th>
-            <th>materia</th>
-        </tr>
-        <?php 
-        include '../model/connection.php';
-while ($datos = pg_fetch_array($aRow)){ 
-?> 
-<tr> 
-<td> <?=$aRow["nombre"]?> </td> 
-<td> <?=$aRow["fecha_inicio"]?> </td> 
-<td> <?=$aRow["fecha_entrega"]?> </td>
-<td> <?=$aRow["materia_id"]?> </td>
-</tr> 
-<?php 
-} 
-pg_free_result($aRow); 
-?> 
-</table> 
-<?php 
-} else { 
-echo "No se encontraron datos en la base de datos"; 
-} 
-?>  
-      
+            <h1>Lista de materias registradas</h1>
+            <table class="table table-striped table-hover table-bordered table-condensed">
+            <tr class="info">
+                <th>Nombre</th>
+                <th>Fecha de Inicio</th>
+                <th>fecha de Entrega</th>
+                <th>Materia</th>
+            </tr>
+            <?php 
+            require_once '../../model/Tarea.php';
+            
+            foreach(Tarea::all() as $tarea){ 
+                require "_lineaTarea.php";
+            }
+            ?> 
+            </table>     
         </div>
     </body>
 </html>
+
+
+
+
+
+
+
+

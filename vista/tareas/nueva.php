@@ -1,7 +1,11 @@
 <html>
 
 <head>
+
+	<body style="background:#F0F8FF">
 	<meta charset="utf-8">
+	
+	
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Registro de tareas</title>
@@ -30,23 +34,25 @@
 			<div class="row">
 				<div class="col-md-3">
 					<div class="form-group">
-						<label class="sr-only" for="date">Ingrese fecha de inicio</label>
-						<input class="datepicker" type="text" name="fechaInicioE" id="fechaInicioE" placeholder="Fecha de Inicio" readonly="readonly">
+						<label for="date">Fecha de inicio: </label>
+						<input required class="datepicker" type="text" name="fechaInicioE" id="fechaInicioE" placeholder="Fecha de Inicio" readonly>
 					</div>
 				</div>
 
 				<div class="col-md-3">
 					<div class="form-group">
-						<label class="sr-only" for="date">Ingrese fecha de entrega limite</label>
-						<input class="datepicker" type="text" name="fechaFinalE" id="fechaFinalE" placeholder="Fecha Limite" readonly="readonly">
+						<label for="date">Fecha de entrega:</label>
+						<input required class="datepicker" type="text" name="fechaFinalE" id="fechaFinalE" placeholder="Fecha Limite" readonly>
 					</div>
 				</div>
 
 				<div class="col-md-3">
 					<div class="form-group">
 						<div class="clearfix">
+							<label  for="date">Hora de inicio:</label>
 							<div class="input-group clockpicker pull-center" data-align="top" data-autoclose="true">
-								<input type="text" class="form-control" name="horaIni" id="horaIni" placeholder="Ingrese la hora de entrega">
+								
+								<input required type="text" class="form-control" name="horaIni" id="horaIni" placeholder="Ingrese la hora de inicio">
 								<span class="input-group-addon">
                                                                     <span class="glyphicon glyphicon-time"></span>
 								</span>
@@ -58,8 +64,9 @@
 				<div class="col-md-3">
 					<div class="form-group">
 						<div class="clearfix">
-							<div class="input-group clockpicker pull-center" data-align="top" data-autoclose="true">
-								<input type="text" class="form-control" name="horaFin" id ="horaFin" placeholder="Ingrese la hora limite de entrega">
+								<label  for="date">Hora de Entrega:</label>							<div class="input-group clockpicker pull-center" data-align="top" data-autoclose="true">
+								
+								<input required type="text" class="form-control" name="horaFin" id ="horaFin" placeholder="Ingrese la hora limite de entrega">
 								<span class="input-group-addon">
 					<span class="glyphicon glyphicon-time"></span>
 								</span>
@@ -75,29 +82,32 @@
 
 				<div class="col-md-4">
 					<div class="form-group">
-						<label class="sr-only" for="name" class=" col-lg-2 control-label">Nombre</label>
-						<input type="tex" class="form-control" id="name" placeholder="Nombre de la tarea", name = "name">
+						<label for="name" class=" col-lg-2 control-label">Nombre:</label>
+						<input required type="tex" class="form-control" id="name" placeholder="Nombre de la tarea", name = "name">
 					</div>
 				</div>
 
 				<div class="col-md-4">
 					<div class="form-group">
-						<label  for="name" class=" col-lg-2 control-label">materia</label>
-						<input type="tex" class="form-control" id="materia" name="materia" placeholder="Materia">
+						<label  for="name" class=" col-lg-2 control-label">Materia:</label>
+						<input required type="tex" class="form-control" id="materia" name="materia" placeholder="Materia">
 					</div>
 				</div>
 			</div>
 
 
 			<div class="form-group">
-				<textarea class="form-control" rows="3" placeholder="Descripcion " name = "descripcion"></textarea>
+				<label  for="name" class=" col-lg-2 control-label">Descripcion:</label>
+				<textarea required class="form-control" rows="3" placeholder="Descripcion de la tarea " name = "descripcion"></textarea>
 			</div>
 			<div class="form-group">
 
-				<button type="submit" class="btn btn-primary">Enviar</button>
-
+				<button type="submit" class="btn btn-primary">Guardar</button>
+				
 			</div>
 		</form>
+		
+				<a href="/vista/tareas/index.php"><button class="btn btn-primary">Ver Tareas</button></a>
 	</div>
 
 

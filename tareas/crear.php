@@ -22,9 +22,6 @@
         $nuevaTarea->setFechaEntrega($fechaEntrega, $horaFin);
         $nuevaTarea->guardar();
         
-        $tareas = Tarea::all();
-        foreach($tareas as $tarea){
-            echo $tarea;
-        }
+        header('Location: /vista/tareas/index.php');
     }
 ?>
