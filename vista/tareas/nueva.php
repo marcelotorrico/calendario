@@ -20,17 +20,17 @@
 	<script src="../../js/bootstrap.js"></script>
 	<script src="../../js/bootstrap-datepicker.js"></script>
 	
-    <link rel="stylesheet" href="../../css/jquery1-10.css" />
-    <script src="../../dist/jquery-datepicker.js"></script>
-    <script src="jquery.ui.datepicker-es.js"></script>
-    <script type="text/javascript" src="../../js/validacionFechas.js"></script>
+        <link rel="stylesheet" href="../../css/jquery1-10.css" />
+        <script src="../../dist/jquery-datepicker.js"></script>
+        <script src="jquery.ui.datepicker-es.js"></script>
+        <script type="text/javascript" src="../../js/validacionFechas.js"></script>
         
 </head>
 
 <body>
 	<div class="container">
 		<h1> Registro de una nueva tarea</h1>
-		<form method="post" action="/tareas/nueva.php">
+		<form method="post" action="../../tareas/nueva.php">
 			<div class="row">
 				<div class="col-md-3">
 					<div class="form-group">
@@ -64,8 +64,8 @@
 				<div class="col-md-3">
 					<div class="form-group">
 						<div class="clearfix">
-								<label  for="date">Hora de Entrega:</label>							<div class="input-group clockpicker pull-center" data-align="top" data-autoclose="true">
-								
+								<label  for="date">Hora de Entrega:</label>
+                                                                <div class="input-group clockpicker pull-center" data-align="top" data-autoclose="true">
 								<input required type="text" class="form-control" name="horaFin" id ="horaFin" placeholder="Ingrese la hora limite de entrega">
 								<span class="input-group-addon">
 					<span class="glyphicon glyphicon-time"></span>
@@ -83,7 +83,7 @@
 				<div class="col-md-4">
 					<div class="form-group">
 						<label for="name" class=" col-lg-2 control-label">Nombre:</label>
-						<input required type="tex" class="form-control" id="name" placeholder="Nombre de la tarea", name = "name">
+						<input required type="tex" class="form-control" id="name" placeholder="Nombre de la tarea" name = "name">
 					</div>
 				</div>
 
@@ -110,75 +110,9 @@
 				<a href="/vista/tareas/index.php"><button class="btn btn-primary">Ver Tareas</button></a>
 	</div>
 
-
-
-
-
-
-
 	<script type="text/javascript" src="../../assets/js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="../../dist/bootstrap-clockpicker.min.js"></script>
-	<script type="text/javascript">
-		$('.clockpicker').clockpicker()
-			.find('input').change(function() {
-				console.log(this.value);
-			});
-		var input = $('#single-input').clockpicker({
-			placement: 'bottom',
-			align: 'left',
-			autoclose: true,
-			'default': 'now'
-		});
-
-		$('.clockpicker-with-callbacks').clockpicker({
-				donetext: 'Done',
-				init: function() {
-					console.log("colorpicker initiated");
-				},
-				beforeShow: function() {
-					console.log("before show");
-				},
-				afterShow: function() {
-					console.log("after show");
-				},
-				beforeHide: function() {
-					console.log("before hide");
-				},
-				afterHide: function() {
-					console.log("after hide");
-				},
-				beforeHourSelect: function() {
-					console.log("before hour selected");
-				},
-				afterHourSelect: function() {
-					console.log("after hour selected");
-				},
-				beforeDone: function() {
-					console.log("before done");
-				},
-				afterDone: function() {
-					console.log("after done");
-				}
-			})
-			.find('input').change(function() {
-				console.log(this.value);
-			});
-
-		// Manually toggle to the minutes view
-		$('#check-minutes').click(function(e) {
-			// Have to stop propagation here
-			e.stopPropagation();
-			input.clockpicker('show')
-				.clockpicker('toggleView', 'minutes');
-		});
-		if (/mobile/i.test(navigator.userAgent)) {
-			$('input').prop('readOnly', true);
-		}
-	</script>
 	<script type="text/javascript" src="../../assets/js/highlight.min.js"></script>
-
-
-
 
 </body>
 

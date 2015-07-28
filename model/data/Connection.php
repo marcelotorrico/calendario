@@ -13,7 +13,7 @@ class Connection
   
   private function __construct()
   {
-    $cadena = "host='localhost' port='5432' dbname='calendario_tareas' user = 'postgres' password = 'cronos'";
+    $cadena = "host='localhost' port='5432' dbname='calendario_tareas' user = 'postgres' password = 'root'";
     $this->connection = pg_connect ($cadena) or die ('Error de conexión. Póngase en contacto con el administrador');
   }
   

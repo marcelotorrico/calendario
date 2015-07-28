@@ -20,8 +20,6 @@
         $nuevaTarea->setMateria($nombreMateria);
         $nuevaTarea->setFechaInicio($fechaInicio, $horaInicio);
         $nuevaTarea->setFechaEntrega($fechaEntrega, $horaFin);
-        $nuevaTarea->guardar();
-        
-        header('Location: /vista/tareas/index.php');
+        $nuevaTarea->guardar(); 
     }
 ?>

@@ -41,15 +41,25 @@ class Tarea extends PersistentObject{
 	public function guardar(){
             
          $connection = Connection::getInstance();
-         $consulta 	 = "UPDATE tareas SET
-         				nombre = '$this->nombre',
-         				descripcion = '$this->descripcion',
-        				materia_id = $this->materia_id,
-        				fecha_inicio = '$this->fecha_inicio',
-        				fecha_entrega = '$this->fecha_entrega'
-         				WHERE id = $this->id";
-         
-         $connection->query($consulta);
+         $consultaNombre = "SELECT * FROM tareas WHERE nombre = '$this->nombre'";
+         $resultado = $connection->query($consultaNombre);
+         $registros = pg_num_rows($resultado);
+         if($registros > 0){
+             $mensaje = "El nombre de la tarea ya fue registrada";
+             echo "<script>alert('$mensaje'); window.location='../vista/tareas/nueva.php';</script>";
+         }else{
+            $consulta 	 = "UPDATE tareas SET
+                                           nombre = '$this->nombre',
+                                           descripcion = '$this->descripcion',
+                                           materia_id = $this->materia_id,
+                                           fecha_inicio = '$this->fecha_inicio',
+                                           fecha_entrega = '$this->fecha_entrega'
+                                           WHERE id = $this->id";
+
+            $connection->query($consulta);
+            $mensaje = "La tarea fue registrada";
+            echo "<script>alert('$mensaje'); window.location='../vista/tareas/nueva.php';</script>";
+         }
     }
 	
 	public function setMateria($materia_id){
