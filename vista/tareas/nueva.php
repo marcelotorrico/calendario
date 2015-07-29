@@ -65,10 +65,10 @@
 					<div class="form-group">
 						<div class="clearfix">
 								<label  for="date">Hora de Entrega:</label>
-                                                                <div class="input-group clockpicker pull-center" data-align="top" data-autoclose="true">
+<div class="input-group clockpicker pull-center" data-align="top" data-autoclose="true">
 								<input required type="text" class="form-control" name="horaFin" id ="horaFin" placeholder="Ingrese la hora limite de entrega">
 								<span class="input-group-addon">
-					<span class="glyphicon glyphicon-time"></span>
+								<span class="glyphicon glyphicon-time"></span>
 								</span>
 							</div>
 						</div>
@@ -94,7 +94,13 @@
 					</div>
 				</div>
 			</div>
-
+			<form action="script.php" method="post">
+   Sistema Operativo:<br /> 
+   <select name="programa">    
+       <option value="Windows" selected="selected">Windows</option>
+       <option value="Machintosh">Mac</option>
+       <option value="Linux">Linux</option>
+   </select>
 
 			<div class="form-group">
 				<label  for="name" class=" col-lg-2 control-label">Descripcion:</label>
@@ -107,7 +113,7 @@
 			</div>
 		</form>
 		
-				<a href="/vista/tareas/index.php"><button class="btn btn-primary">Ver Tareas</button></a>
+				<a href="index.php"><button class="btn btn-primary">Ver Tareas</button></a>
 	</div>
 
 	<script type="text/javascript" src="../../assets/js/bootstrap.min.js"></script>

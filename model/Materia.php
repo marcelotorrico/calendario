@@ -14,9 +14,21 @@ class Materia extends PersistentObject{
 		$this->nombre = $aRow['nombre'];
 	}
 	
+	protected function guardar_atributos(){
+		//implementar
+		return true;
+	}
+	
+	protected function validar(){
+		//implementar
+		return true;
+	}
+	
 	public function getNombre(){
 		return $this->nombre;
 	}
+	
+	
 }
 
 ?>

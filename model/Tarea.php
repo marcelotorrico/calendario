@@ -25,11 +25,10 @@ class Tarea extends PersistentObject{
 	}
 	
 	public static function all(){
-		$connection 	= Connection::getInstance();
-		$class = "tareas";
-		$result = $connection->query("SELECT id FROM $class");
-		
-		$res = array();
+		$connection = Connection::getInstance();
+		$class 		= "tareas";
+		$result 	= $connection->query("SELECT id FROM $class");
+		$res 		= array();
 		
 		while ($id = pg_fetch_array($result)[0]){
 			$res[] = new Tarea($id);
@@ -38,28 +37,35 @@ class Tarea extends PersistentObject{
 		return $res;
 	}
 	
-	public function guardar(){
-            
-         $connection = Connection::getInstance();
-         $consultaNombre = "SELECT * FROM tareas WHERE nombre = '$this->nombre'";
-         $resultado = $connection->query($consultaNombre);
-         $registros = pg_num_rows($resultado);
-         if($registros > 0){
-             $mensaje = "El nombre de la tarea ya fue registrada";
-             echo "<script>alert('$mensaje'); window.location='../vista/tareas/nueva.php';</script>";
-         }else{
-            $consulta 	 = "UPDATE tareas SET
-                                           nombre = '$this->nombre',
-                                           descripcion = '$this->descripcion',
-                                           materia_id = $this->materia_id,
-                                           fecha_inicio = '$this->fecha_inicio',
-                                           fecha_entrega = '$this->fecha_entrega'
-                                           WHERE id = $this->id";
+	protected function validar(){
+		//validamos que el nombre no este repetido en la basede datos
+		$valido = true;
+		
+		$connection 	= Connection::getInstance();
+        $consultaNombre = "SELECT * FROM tareas WHERE nombre = '$this->nombre' AND materia_id = '$this->materia_id'";
+        $resultado 		= $connection->query($consultaNombre);
+        $registros 		= pg_num_rows($resultado);
+        
+        //$consultarMateria = "SELECT * FROM tareas WHERE "
+        
+        if($registros > 0)
+        	$valido = false;
+        	
+		return $valido;
+	}
+	
+	protected function guardar_atributos(){
+		//el objeto guarda el estado de sus atributos en la base de datos
+        $connection = Connection::getInstance();
+        $consulta 	= "UPDATE tareas SET
+                       nombre = '$this->nombre',
+                       descripcion = '$this->descripcion',
+                       materia_id = $this->materia_id,
+                       fecha_inicio = '$this->fecha_inicio',
+                       fecha_entrega = '$this->fecha_entrega'
+                       WHERE id = $this->id";
 
-            $connection->query($consulta);
-            $mensaje = "La tarea fue registrada";
-            echo "<script>alert('$mensaje'); window.location='../vista/tareas/nueva.php';</script>";
-         }
+        $connection->query($consulta);
     }
 	
 	public function setMateria($materia_id){
@@ -70,12 +76,15 @@ class Tarea extends PersistentObject{
 	public function setNombre($nombre){
 		$this->nombre = $nombre;
 	}
+	
 	public function setDescripcion($descripcion){
 		$this->descripcion = $descripcion;
 	}
+	
  	public function setFechaInicio($date, $hour){
  		$this->fecha_inicio = new Timestamp($date, $hour);
  	}
+ 	
  	public function setFechaEntrega($date, $hour){
  		$this->fecha_entrega = new Timestamp($date, $hour);
  	}
@@ -83,15 +92,19 @@ class Tarea extends PersistentObject{
  	public function getMateria(){
  		return new Materia($this->materia_id);
  	}
+ 	
  	public function getNombre(){
  		return $this->nombre;
  	}
+ 	
  	public function getFechaInicio(){
  		return $this->fecha_inicio;
  	}
+ 	
  	public function getFechaEntrega(){
  		return $this->fecha_entrega;
  	}
+ 	
  	public function getDescripcion(){
  		return $this->descripcion;
  	}

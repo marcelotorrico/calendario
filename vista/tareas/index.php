@@ -21,6 +21,7 @@
                 <th>Fecha de Inicio</th>
                 <th>fecha de Entrega</th>
                 <th>Materia</th>
+                <th>Descripcion</th>
             </tr>
             <?php 
             require_once '../../model/Tarea.php';

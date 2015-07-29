@@ -4,4 +4,5 @@
 <td> <?=$tarea->getFechaInicio()?> </td> 
 <td> <?=$tarea->getFechaEntrega()?> </td>
 <td> <?=$tarea->getMateria()->getNombre()?> </td>
+<td> <?=$tarea->getDescripcion()?></td>
 </tr> 

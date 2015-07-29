@@ -20,6 +20,12 @@
         $nuevaTarea->setMateria($nombreMateria);
         $nuevaTarea->setFechaInicio($fechaInicio, $horaInicio);
         $nuevaTarea->setFechaEntrega($fechaEntrega, $horaFin);
-        $nuevaTarea->guardar(); 
+        if ($nuevaTarea->guardar()){
+            $mensaje = "La tarea fue registrada con exito";
+            echo "<script>alert('$mensaje'); window.location='../vista/tareas/nueva.php';</script>";
+        }else {
+             $mensaje = "El nombre de la tarea ya fue registrada. Por favor elija otro nombre";
+             echo "<script>alert('$mensaje'); window.location='../vista/tareas/nueva.php';</script>";
+        }
     }
 ?>

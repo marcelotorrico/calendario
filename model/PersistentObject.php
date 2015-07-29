@@ -10,7 +10,7 @@ abstract class PersistentObject{
 	
 	protected function __construct($id = -1){
 		if ($id < 0){
-			$this->construct_new();
+			$this->id = $id;
 		} else {
 			$connection = Connection::getInstance();
 			$class 		= $this->getClass();
@@ -24,14 +24,29 @@ abstract class PersistentObject{
 		}
 	}
 	
-	private function construct_new(){
-		$connection 	= Connection::getInstance();
-		$class = $this->getClass();
-		$connection->query("INSERT INTO $class DEFAULT VALUES");
-		$res = $connection->query("SELECT currval('$class"."_id_seq')");
-		$arr = pg_fetch_array($res);
-		$this->id = $arr[0];
+	public function guardar(){
+		$guardado_exitoso = false;
+		
+		if ($this->validar()){
+		//el objeto decide si debe insertarse a la base de datos
+			if ($this->id < 0){
+				$connection 	= Connection::getInstance();
+				$class = $this->getClass();
+				$connection->query("INSERT INTO $class DEFAULT VALUES");
+				$res = $connection->query("SELECT currval('$class"."_id_seq')");
+				$arr = pg_fetch_array($res);
+				$this->id = $arr[0];
+			}
+			
+			$this->guardar_atributos();
+			
+			$guardado_exitoso = true;
+		}
+		
+		return $guardado_exitoso;	
+		
 	}
+	
 	
 	private function getClass(){
 		return strtolower(pluralize(get_class($this)));
@@ -39,7 +54,8 @@ abstract class PersistentObject{
 	
 	
 	protected abstract function initialize_from($aRow);
-	
+	protected abstract function guardar_atributos();
+	protected abstract function validar();
 }
 	
 ?>
