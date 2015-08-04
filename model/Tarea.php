@@ -46,8 +46,6 @@ class Tarea extends PersistentObject{
         $resultado 		= $connection->query($consultaNombre);
         $registros 		= pg_num_rows($resultado);
         
-        //$consultarMateria = "SELECT * FROM tareas WHERE "
-        
         if($registros > 0)
         	$valido = false;
         	
