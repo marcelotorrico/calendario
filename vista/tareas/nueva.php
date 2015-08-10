@@ -35,14 +35,14 @@
 				<div class="col-md-3">
 					<div class="form-group">
 						<label for="date">Fecha de inicio: </label>
-						<input required class="datepicker" type="text" name="fechaInicioE" id="fechaInicioE" placeholder="Fecha de Inicio" readonly>
+						<input required class="datepicker" type="text" name="fechaInicioE" id="fechaInicioE" placeholder="Fecha de Inicio">
 					</div>
 				</div>
 
 				<div class="col-md-3">
 					<div class="form-group">
 						<label for="date">Fecha de entrega:</label>
-						<input required class="datepicker" type="text" name="fechaFinalE" id="fechaFinalE" placeholder="Fecha Limite" readonly>
+						<input required class="datepicker" type="text" name="fechaFinalE" id="fechaFinalE" placeholder="Fecha Limite">
 					</div>
 				</div>
 
@@ -65,7 +65,7 @@
 					<div class="form-group">
 						<div class="clearfix">
 								<label  for="date">Hora de Entrega:</label>
-<div class="input-group clockpicker pull-center" data-align="top" data-autoclose="true">
+								<div class="input-group clockpicker pull-center" data-align="top" data-autoclose="true">
 								<input required type="text" class="form-control" name="horaFin" id ="horaFin" placeholder="Ingrese la hora limite de entrega">
 								<span class="input-group-addon">
 								<span class="glyphicon glyphicon-time"></span>
@@ -90,17 +90,24 @@
 				<div class="col-md-4">
 					<div class="form-group">
 						<label  for="name" class=" col-lg-2 control-label">Materia:</label>
-						<input required type="tex" class="form-control" id="materia" name="materia" placeholder="Materia">
 					</div>
+					<br>
+				<?php 
+                require_once '../../model/Materia.php';
+                ?>
+                <select name="materia" id = 'materias'> 
+                <?php
+                foreach(Materia::all() as $materia){
+               	?>
+                <option value="<?=$materia->getId()?>"> <?=$materia->getNombre()?></option>
+                <?php
+                }
+            ?> 
+            	</select>
+					
 				</div>
 			</div>
-			<form action="script.php" method="post">
-   Sistema Operativo:<br /> 
-   <select name="programa">    
-       <option value="Windows" selected="selected">Windows</option>
-       <option value="Machintosh">Mac</option>
-       <option value="Linux">Linux</option>
-   </select>
+		
 
 			<div class="form-group">
 				<label  for="name" class=" col-lg-2 control-label">Descripcion:</label>

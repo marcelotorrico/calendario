@@ -5,6 +5,10 @@
 //drop database calendario_tareas;
 //create database calendario_tareas;
 //\c calendario_tareas; -> \i /home/ubuntu/workspace/model/data/db.sql
+// para clonar:
+// cd /home/ubuntu
+// git clone https://github.com/diego-gabriel/procesos_agiles.git
+// mv procesos_agiles/ workspace
 
 class Connection
 {
@@ -13,7 +17,7 @@ class Connection
   
   private function __construct()
   {
-    $cadena = "host='localhost' port='5432' dbname='calendario_tareas' user = 'postgres' password = 'root'";
+    $cadena = "host='localhost' port='5432' dbname='calendario_tareas' user = 'postgres' password = 'cronos'";
     $this->connection = pg_connect ($cadena) or die ('Error de conexión. Póngase en contacto con el administrador');
   }
   

@@ -1,10 +1,12 @@
 <?php
 require_once 'data/Connection.php';
-require_once 'PersistentObject.php';
+require_once 'ObjetoPersistente.php';
 require_once 'Timestamp.php';
 require_once 'Materia.php';
 
-class Tarea extends PersistentObject{
+class Tarea extends ObjetoPersistente{
+	
+	use accesoAPropiedades;
 
 	private $fecha_inicio;
 	private $fecha_entrega;
@@ -37,6 +39,7 @@ class Tarea extends PersistentObject{
 		return $res;
 	}
 	
+	
 	protected function validar(){
 		//validamos que el nombre no este repetido en la basede datos
 		$valido = true;
@@ -52,23 +55,8 @@ class Tarea extends PersistentObject{
 		return $valido;
 	}
 	
-	protected function guardar_atributos(){
-		//el objeto guarda el estado de sus atributos en la base de datos
-        $connection = Connection::getInstance();
-        $consulta 	= "UPDATE tareas SET
-                       nombre = '$this->nombre',
-                       descripcion = '$this->descripcion',
-                       materia_id = $this->materia_id,
-                       fecha_inicio = '$this->fecha_inicio',
-                       fecha_entrega = '$this->fecha_entrega'
-                       WHERE id = $this->id";
-
-        $connection->query($consulta);
-    }
-	
 	public function setMateria($materia_id){
-	//	$this->materia_id = $materia_id;
-		$this->materia_id = 1;
+		$this->materia_id = $materia_id;
 	}
 	
 	public function setNombre($nombre){
@@ -105,6 +93,10 @@ class Tarea extends PersistentObject{
  	
  	public function getDescripcion(){
  		return $this->descripcion;
+ 	}
+ 	
+ 	public function getTable(){
+ 		return "tareas"
  	}
 }
 

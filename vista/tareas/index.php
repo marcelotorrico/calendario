@@ -24,13 +24,13 @@
                 <th>Descripcion</th>
             </tr>
             <?php 
-            require_once '../../model/Tarea.php';
-            
-            foreach(Tarea::all() as $tarea){ 
+                require_once '../../model/Tarea.php';
+                foreach(Tarea::all() as $tarea){ 
                 require "_lineaTarea.php";
-            }
+                }
             ?> 
-            </table>     
+            </table>
+            <a href="nueva.php"><button class="btn btn-primary">Registrar Nueva Tarea</button></a>
         </div>
     </body>
 </html>
