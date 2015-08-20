@@ -14,6 +14,10 @@ class Tarea extends ObjetoPersistente{
 	private $descripcion;
 	private $materia_id;
 	
+	const PENDIENTE = "Pendiente";
+	const ENTREGADA = "Entregada";
+	const ATRASADA  = "Atrasada";
+	
 	function __construct($id = -1){
 		parent::__construct($id);
 	}
@@ -96,7 +100,7 @@ class Tarea extends ObjetoPersistente{
  	}
  	
  	public function getTable(){
- 		return "tareas"
+ 		return "tareas";
  	}
 }
 

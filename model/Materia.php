@@ -2,6 +2,7 @@
 
 require_once 'data/Connection.php';
 require_once 'ObjetoPersistente.php';
+require_once 'Estudiante.php';
 
 class Materia extends ObjetoPersistente{
 	
@@ -30,6 +31,23 @@ class Materia extends ObjetoPersistente{
 		return $res;
 	}
 	
+	public function estudiantes(){
+		$connection = Connection::getInstance();
+		$result 	= $connection->query("SELECT usuarios.id 
+										  FROM usuarios, inscripciones, materias  
+										  WHERE tipo_usuario = ".Usuario::ESTUDIANTE." AND  
+										  materias.id = $this->id AND 
+										  usuarios.id = inscripciones.usuario_id AND 
+										  materias.id = inscripciones.materia_id");
+		$res 		= array();
+		
+		while ($id = pg_fetch_array($result)[0]){
+			$res[] = new Estudiante($id);
+		}
+		
+		return $res;
+	}
+	
 	protected function validar(){
 		//implementar
 		return true;
@@ -37,6 +55,9 @@ class Materia extends ObjetoPersistente{
 	
 	public function getNombre(){
 		return $this->nombre;
+	}
+	public function setNombre($nombre){
+		$this->nombre = $nombre;
 	}
 	
 	public function getTable(){

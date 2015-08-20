@@ -56,6 +56,10 @@ class Timestamp{
     public function __toString(){
         return "$this->year-$this->month-$this->day $this->hour:$this->minute:$this->second".$this->time_zone;
     }
+    
+    public function mostrar(){
+        return "$this->year-$this->month-$this->day $this->hour:$this->minute";
+    }
 }
 
 ?>
