@@ -36,7 +36,7 @@
                                 <h1>Bienvenido al Calendario de Tareas</h1>
                                 <img  src="imagenes/agiles.jpg" alt="portadaInicio" class="img-thumbnail" width="700" height="700">
                             </div>
-                            <form method="post" action="/controlador/ingreso.php">
+                            <form method="post" action="Controlador/ingreso.php">
                                 <div class="sidebar">
                                     <h2>Ingresar al Sistema</h2>
                                     <br>   
